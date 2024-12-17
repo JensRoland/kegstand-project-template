@@ -1,3 +1,43 @@
+{% if package_manager == 'uv' %}
+[project]
+name = "{{project_name}}"
+version = "0.1.0"
+description = "My API description"
+authors = [
+  { name = "Your Name", email = "<you@example.com>" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.12"
+
+dependencies = [
+  "kegstand>=0.3.6",
+]
+
+[dependency-groups]
+dev = [
+  "kegstandcli>=0.3.9",
+{% if include_tests %}
+  "pytest>=7.3.0",
+{% endif %}
+]
+
+[tool.kegstand.api_gateway]
+name = "My API Gateway"
+# user_pool_id = "eu-west-1_vatofacid"
+
+[tool.kegstand.api]
+name = "My Service API"
+
+{% if include_tests %}
+[tool.pytest.ini_options]
+pythonpath = "src"
+{% endif %}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+{% endif %}
+{% if package_manager == 'poetry' %}
 [tool.poetry]
 name = "{{project_name}}"
 version = "0.1.0"
@@ -10,9 +50,10 @@ kegstand = "^0.3.6"
 python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
-moto = "^4.1.5"
-kegstandcli = "^0.3.8"
-pytest = "^7.2.2"
+kegstandcli = "^0.3.9"
+{% if include_tests %}
+pytest = "^7.3.0"
+{% endif %}
 
 [tool.kegstand.api_gateway]
 name = "My API Gateway"
@@ -21,9 +62,12 @@ name = "My API Gateway"
 [tool.kegstand.api]
 name = "My Service API"
 
+{% if include_tests %}
 [tool.pytest.ini_options]
 pythonpath = "src"
+{% endif %}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+{% endif %}

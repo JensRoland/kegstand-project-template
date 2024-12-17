@@ -1,6 +1,21 @@
+_exclude:
+    - copier.yaml
+    - copier.yml
+    - ~*
+    - .git
+    - .DS_Store
+    - README.md
+
 project_name:
     type: str
     help: What is your project name? (no spaces)
+package_manager:
+    type: str
+    default: uv
+    help: What package manager do you want to use? (uv, poetry)
+    choices:
+        - uv
+        - poetry
 include_tests:
     type: bool
     default: false
