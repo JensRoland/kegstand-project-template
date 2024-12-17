@@ -20,7 +20,7 @@ First, create a new project using the Kegstand CLI or Copier:
 
 ```shell
 # Using the Kegstand CLI
-> pipx install kegstandcli
+> uvx install kegstandcli  # or `pipx install kegstandcli`
 > keg new my-service
 
 # Using Copier
