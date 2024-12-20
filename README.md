@@ -6,7 +6,7 @@ This template lets you create a Python API on AWS Lambda / API Gateway with CDK 
 
 ## Features
 
-- Python 3.12+
+- Supports Python 3.10-3.13
 - Choice of [uv](https://docs.astral.sh/uv/) or [Poetry](https://python-poetry.org/) for dependency management
 - File-based routing
 - Decorator-based endpoint definitions
